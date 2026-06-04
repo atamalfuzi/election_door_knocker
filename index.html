@@ -228,7 +228,7 @@
 
         <script>
         // Embed the Web App URL here so users don't need to paste it.
-        const DEFAULT_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxXh54UC2tE_AUnU4KFrahoHRFi6u-M8vdZ82SwizGxfxKvU0xJ7R7gPkNymU4AkRTSaw/exec';
+        const DEFAULT_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxLo_65JAVbRHG8SbBIN_TN_ysOzT20B8fW_-Mh3nnGbC--xr9sCUXa2qopSWac1gO_/exec';
 
         const doorKnocker = {
             apiUrl: DEFAULT_WEBAPP_URL,
@@ -242,14 +242,9 @@
             },
 
             testConnection() {
-                if (!this.apiUrl) {
-                    this.setConnected(false);
-                    return;
-                }
-
-                fetch(this.apiUrl)
+                fetch(this.apiUrl + '?action=getStats')
                     .then(r => r.json())
-                    .then(data => this.setConnected(Boolean(data.success)))
+                    .then(() => this.setConnected(true))
                     .catch(() => this.setConnected(false));
             },
 
@@ -350,5 +345,6 @@
     </script>
 </body>
 </html>
+
 
 
